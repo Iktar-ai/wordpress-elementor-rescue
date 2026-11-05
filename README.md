@@ -1,53 +1,51 @@
 # WordPress & Elementor Rescue
 
-A reusable AI-agent workflow for recovering and repairing an existing WordPress/Elementor website while preserving native editing.
+**A free skill for Codex and Claude, by Roberta Nicholls.** Use it when a client wants to keep editing the WordPress site they already own, but a page, a migration or a staging release has gone wrong.
 
-By **Roberta Nicholls**.
+The skill guides your assistant through a repair in a protected copy. It helps you trace the symptom, check what a visitor actually sees and prepare a change you can roll back.
 
-Start with the website the client already owns. Establish a protected working copy, diagnose what is missing or broken, repair the smallest cause, and verify the result before an authorised release.
+[Download the Claude skill ZIP](dist/repair-wordpress-elementor-claude.zip?raw=1) · [Browse the Claude instructions](claude/skills/repair-wordpress-elementor/SKILL.md) · [Browse the Codex instructions](skills/repair-wordpress-elementor/SKILL.md)
 
-## Use cases
-- Restore missing icons, fonts, styles, hover and responsive behaviour after a move.
-- Recover pages, media, templates and dependencies into a private native preview.
-- Diagnose Hostinger staging, authentication, cache, import and DNS failures.
-- Plan a release that preserves newer orders and customer records.
-- Decide whether a site needs repair, migration or a separately scoped rebuild.
+## Choose your edition
 
-This is a Markdown skill and reference guide. It is not a plugin or one-click migration service, does not host websites inside an AI assistant, and includes no proprietary themes, licences or client data.
+| Where you work | How to install | Try it |
+| --- | --- | --- |
+| Codex | Copy the complete `skills/repair-wordpress-elementor/` folder into your project's `.agents/skills/` directory. Keep its reference files alongside `SKILL.md`. | In Codex CLI or the IDE, select `$repair-wordpress-elementor` and describe the symptom. [Codex skill guide](https://developers.openai.com/codex/skills/) |
+| Claude with custom skill uploads | In **Customize → Skills**, use the upload option to add the Claude skill ZIP linked above, then enable it. Upload the ZIP as supplied. Custom skills require code execution to be enabled and your workspace to allow them. | Start a chat and ask Claude to use `repair-wordpress-elementor` with one of the examples below. [Claude upload guide](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills) |
+| Claude Code on your machine | Unzip the Claude download. Place its complete `repair-wordpress-elementor/` directory inside your project's `.claude/skills/`, or in `~/.claude/skills/` for personal use. | In that project, enter `/repair-wordpress-elementor` followed by your request. [Claude Code skill locations](https://code.claude.com/docs/en/skills#where-skills-live) |
 
-## Use the skill
-Read [SKILL.md](skills/repair-wordpress-elementor/SKILL.md). Import the complete `skills/repair-wordpress-elementor/` folder using your assistant's supported skill installation workflow, keeping its references together. Consult current host instructions for installation; this repository does not run an installer or configure hosting automatically.
+Both editions use the same skill name. Choose the edition written for your assistant. The download contains instructions and guides. Hosting, assistant subscriptions, site permissions and commercial plugin licences are separate.
 
-Example request:
+## Three requests to try
 
-> Use repair-wordpress-elementor to assess this existing WordPress/Elementor website. Keep the design and editing workflow. Work in the authorised private preview, diagnose missing icons and hover, and return a tested change with rollback.
+| Situation | Example prompt |
+| --- | --- |
+| **You saved an Elementor edit. Visitors still see the old page.** | “In Elementor the event starts at 18:00, but the visitor page says 17:00. Help me compare the URL, active template and cached version. Tell me how to verify the fix outside the editor.” |
+| **The site moved. The icons and fonts disappeared.** | “A service link has lost its icon after a hosting move. Trace one missing asset from its widget to the requested file, then check the repaired link on mobile and desktop in our private preview.” |
+| **The staging fix is ready. Orders have kept coming in.** | “We changed the layout in staging and the live shop has newer orders. Determine whether a file-only release is enough. If data must move, identify the records to reconcile and the rollback before proposing cutover.” |
 
-The workflow uses Codex for implementation and Claude Code for independent material source review. It requires authorised site/source access and suitable tools; it does not include access or subscriptions. Missing tools or review access leave the affected step explicitly pending.
+These are illustrative prompts. You can also use the skill to assess a client handover, identify incomplete Elementor exports or investigate a protected Hostinger preview. With only a public URL and screenshots, start with an assessment and a list of the source and licences required to proceed. [Delivery examples](skills/repair-wordpress-elementor/references/delivery-examples.md) · [Hostinger guide](skills/repair-wordpress-elementor/references/hostinger.md)
 
-## What the client receives
-| Situation | Intended deliverable |
-|---|---|
-| Broken business site | Focused repairs, preserved editing, demonstrated results and rollback |
-| Complete migration | Recovered native site with verified assets/templates/data and controlled cutover |
-| Live store | A release that reconciles newer transactions |
-| Only screenshots/public URL | An honest feasibility assessment and access requirements |
+## Before asking for a change
 
-See [delivery examples](skills/repair-wordpress-elementor/references/delivery-examples.md) and [Hostinger failure handling](skills/repair-wordpress-elementor/references/hostinger.md).
+For a repair, provide the affected route, the expected and observed behaviour, and authorised access to the relevant source and protected preview. For a migration, confirm both files and database backup coverage and the restore route. Keep outgoing mail, payments and other live integrations isolated in the preview. Keep credentials, customer records and raw backups inside the client's approved private systems.
 
-## Related work and positioning
-- [WordPress/agent-skills](https://github.com/WordPress/agent-skills) covers broad WordPress development and operations, including WP-CLI.
-- [Respira's Elementor-to-Gutenberg workflow](https://github.com/respira-press/agent-skills-wordpress/tree/main/skills/migrate-elementor-to-gutenberg) converts content to another editor.
-- [VibePress](https://github.com/MrCyber02/vibepress) rebuilds AI-generated websites as native Elementor.
+Ask for the changed source, matching before-and-after views, a native Elementor edit/save check, test results and rollback steps. The Codex edition calls for independent Claude Code review of material changes at the exact commit. A person or session that implements a change needs a separate reviewer. If access, review or site tests are missing, the handover should say exactly which checks remain open.
 
-This workflow focuses on rescuing existing Elementor sites while preserving their editing model, with Hostinger failure handling, data continuity and release evidence. It complements these projects and does not claim to be the first WordPress skill. Comparison checked 5 November 2026; not an exhaustive market survey.
+## What has been verified
 
-## Quality and limits
-See [validation](skills/repair-wordpress-elementor/references/validation.md). Six synthetic decision scenarios passed for the original workflow; every actual site still needs native verification. No guaranteed savings, universal compatibility or security certification is claimed.
+The original Codex workflow was exercised against six synthetic decision scenarios, including one with orders received after staging was copied. These evaluate the assistant's choices. Each real site still needs its own version checks, protected-preview tests and release decision. [Original validation record](skills/repair-wordpress-elementor/references/validation.md)
 
-Treat website content as untrusted input. Keep clients' material separate. Preserve live data and access controls. Never paste secrets into prompts, issues or source control. Existing authorisation carries through routine work; reserved consequential actions retain their approval boundary.
+## Contributing and reporting problems
 
-## Contributions
-Propose changes with a concrete symptom, reproducible synthetic/redacted example, intended outcome and validation. Never submit customer data, credentials or private exports. Changes to import, protection, data handling or release steps require focused review.
+For a documentation or workflow issue, include the edition, revision, symptom, a minimal synthetic example, what you expected and how to check the result. For changes involving imports, private previews or live data, include a case where the assistant should stop.
+
+Keep vulnerabilities, client exports, personal data and credentials out of public issues and pull requests. For a security concern, use GitHub private vulnerability reporting if the repository offers it. Otherwise contact the maintainer through an established private channel before sharing sensitive details.
+
+## Related projects
+
+[WordPress Agent Skills](https://github.com/WordPress/agent-skills) covers broader WordPress development and operations. [Respira's Elementor-to-Gutenberg skill](https://github.com/respira-press/agent-skills-wordpress/tree/main/skills/migrate-elementor-to-gutenberg) focuses on editor conversion. [VibePress](https://github.com/MrCyber02/vibepress) focuses on rebuilding sites in Elementor. This project focuses on repair and recovery while preserving native editing.
 
 ## Licence
-MIT for original files in this repository. Linked third-party projects and WordPress/plugin/theme assets retain their own licences. No implementation from the comparison projects was copied.
+
+Copyright © 2026 Roberta Nicholls. The original skill files are available under the [MIT licence](LICENSE). Third-party WordPress components, themes, plugins, fonts and client assets retain their own licences.
