@@ -1,0 +1,19 @@
+name: Verify public skill package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Check README links, skill folders and ZIP
+        run: python3 scripts/check_package.py
