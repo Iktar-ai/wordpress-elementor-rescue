@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress & Elementor Rescue"
+  short_description: "Recover, repair and verify existing client websites"
+  default_prompt: "Use $repair-wordpress-elementor to assess and repair an existing WordPress/Elementor site in a protected preview while preserving its content and live site."
